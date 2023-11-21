@@ -10,17 +10,23 @@ public class Cliente extends JFrame {
     private JPanel panel1;
     private JTextField textField1;
     private JTextField txtAmount;
-    private JComboBox nodeData;
+    private JComboBox cmbServer;
     private JButton txtSend;
+    private JLabel txtUsuario;
+    private JLabel txtBalance;
 
-    public Cliente(){
-
+    public Cliente(String user, String server, double balance){
        setTitle("Cliente");
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
 
        getContentPane().add(panel1);
        setVisible(true);
+
+        txtUsuario.setText(user);
+        txtBalance.setText(String.valueOf(balance));
+        cmbServer.addItem(server);
+
         txtSend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -57,9 +63,6 @@ public class Cliente extends JFrame {
         JOptionPane.showMessageDialog(this, mensaje);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(Cliente::new);
-    }
 
     /*public boolean sendTransaction()
     {

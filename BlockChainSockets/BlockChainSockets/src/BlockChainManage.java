@@ -8,12 +8,13 @@ public class BlockChainManage extends JFrame {
     private JTextField txtIP;
     private JTextField txtPort;
     private JButton newServerButton;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JComboBox comboBox1;
+    private JTextField txtClientName;
+    private JTextField txtClientBalance;
     private JButton newWalletButton;
     private JList list1;
     private JList list2;
+    private JTextField txtClienteServer;
+    private JTextField txtPassword;
 
 
     public BlockChainManage(){
@@ -41,9 +42,35 @@ public class BlockChainManage extends JFrame {
                 var server = new Server(name, ip, port);
             }
         });
+        newWalletButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                var name = txtClientName.getText();
+                var balance = Double.parseDouble(txtClientBalance.getText());
+                var clave = txtPassword.getText();
+                var server = txtClienteServer.getText();
+                var cifrador = new Cifrado("NADA12345");
+                String claveCifrada = null;
+                try {
+                    claveCifrada = cifrador.encriptar(clave.toString());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+                var con = new DbConnection();
+
+                var resultado = con.CrearWallet(name,claveCifrada,server, balance);
+                if (resultado)
+                    JOptionPane.showMessageDialog(null, "wallet creada");
+                else
+                    JOptionPane.showMessageDialog(null, "Error creando wallet");
+
+                var cliente = new Cliente(name, server, balance);
+            }
+        });
     }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(BlockChainManage::new);
     }
+
 }
