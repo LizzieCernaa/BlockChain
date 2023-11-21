@@ -64,7 +64,54 @@ public class DbConnection {
         }
     }
 
+    public boolean validarCredenciales(String nombre, String clave) {
+        String sql = "SELECT COUNT(*) FROM clientes WHERE nombre = ? AND clave = ?";
 
+        try (
+                Connection connection = DriverManager.getConnection(url, UserName, password);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ) {
+            preparedStatement.setString(1, nombre);
+            preparedStatement.setString(2, clave);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Si hay al menos una fila en el resultado, las credenciales son válidas
+            if (resultSet.next()) {
+                int rowCount = resultSet.getInt(1);
+                return rowCount > 0;
+            }
+
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean validarNombreClienteExistente(String nombre) {
+        String sql = "SELECT COUNT(*) FROM clientes WHERE nombre = ?";
+
+        try (
+                Connection connection = DriverManager.getConnection(url, UserName, password);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ) {
+            preparedStatement.setString(1, nombre);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Si hay al menos una fila en el resultado, el nombre de cliente ya existe
+            if (resultSet.next()) {
+                int rowCount = resultSet.getInt(1);
+                return rowCount > 0;
+            }
+
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 }

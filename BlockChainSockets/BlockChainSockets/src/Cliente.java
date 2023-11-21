@@ -1,5 +1,6 @@
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -14,6 +15,8 @@ public class Cliente extends JFrame {
     private JButton txtSend;
     private JLabel txtUsuario;
     private JLabel txtBalance;
+    private JPasswordField txtPassword;
+    private JLabel LbPass;
     private String ip;
     private int puerto;
 
@@ -31,11 +34,33 @@ public class Cliente extends JFrame {
 
         txtSend.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                //this.sendTransaction();
-                txtAmount.setText("");
-                txtSend.setText("");
+            public void actionPerformed(ActionEvent e) {
+                var sendt = textField1.getText();
+                DbConnection con = new DbConnection();
+
+                var resultado = con.validarNombreClienteExistente(sendt);
+                if (resultado)
+                    JOptionPane.showMessageDialog(null, "Usurio Existente");
+                else
+                    JOptionPane.showMessageDialog(null, "Error, usuario no existe");
+
+                var usuario = txtUsuario.getText();
+                var password = txtPassword.getText();
+
+                var cifrador = new Cifrado("NADA12345");
+                String claveCifrada = null;
+                try {
+                    claveCifrada = cifrador.encriptar(password.toString());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+                var resultados = con.validarCredenciales(usuario, claveCifrada);
+
+                if (resultados)
+                    JOptionPane.showMessageDialog(null, "Usurio y clave validado");
+                else
+                    JOptionPane.showMessageDialog(null, "Error, usuario y/o clase no valido");
+
 
             }
         });
@@ -64,48 +89,5 @@ public class Cliente extends JFrame {
     private void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
-
-
-    /*public boolean sendTransaction()
-    {
-        String sNode= this.nodeData.getNodeName();
-        String sReceiver= this.txtSend.getText().trim().toUpperCase();
-        Double dAmount= Double.parseDouble(this.txtAmount.getText());
-
-        int iserver= this.jComboBox1.getSelectedIndex();
-
-        if (dAmount<=this.dCurrentBalance)
-        {
-            this.jLabel4.setText("Current Balance: ");
-            this.dCurrentBalane-=dAmount;
-
-            try
-            {
-                sNode= this.oCifrado.encriptar(sNode);
-                sReceiiver= this.oCifrado.encriptar(sReceiver);
-
-                Block blk= new Block();
-                blk.setTransaction(sNode,dAmount,sReceiver);
-
-                Socket socket = new Socket(
-                        this.aServers.get(iserver).getIPAddress(),
-                        this.aServers.get(iserver).getSocketNum());
-                ObjectOutputStream oss =
-                        new ObjectOutputStream(socket.getOutputStream());
-                oos.writeObject(blk);
-                socket.close();
-                this.jLabel4.setText("Current Bolance:");
-                this.lBalance.setText("$ "+Double.toString(this.dCurrentBalance));
-                return true;
-            }
-            catch (Exception e)
-            {
-                this.dCurrentBalance+=dAmount;
-                this.jLabel5.setText(e.toString());
-            }
-        }
-        else this.jLabel4.setText("-Insufficient Balance: ");
-        return false;
-    }*/
 
 }
