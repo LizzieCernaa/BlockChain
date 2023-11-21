@@ -5,7 +5,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 public class Server extends JFrame {
 
-   static JTextArea textArea;
     private JPanel panel2;
     private JButton BtnSummary;
     private JButton BtnBalance;
@@ -15,58 +14,65 @@ public class Server extends JFrame {
     private JLabel LbAvailable;
     private JLabel LbBlock;
     private JPanel JOptionPane;
+    private JLabel txtName;
+    private JLabel txtIP;
+    private JLabel txtPort;
+    private JTextArea txtMensajes;
 
-    public Server() {
+    private String IP;
+
+    private int Port;
+
+
+    public Server(String Name, String IP, int Port) {
         setTitle("Servidor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
-
-        textArea = new JTextArea();
-        textArea.setEditable(false);
-
-        JScrollPane scrollPane = new JScrollPane(textArea);
-        //getContentPane().add(scrollPane, BorderLayout.CENTER);
+        txtName.setText(Name);
+        txtIP.setText(IP);
+        txtPort.setText(String.valueOf(Port));
+        this.IP=IP;
+        this.Port =Port;
+        txtMensajes.setEditable(false);
         getContentPane().add(panel2);
-
         setVisible(true);
 
-        // Iniciar el servidor en un hilo separado para no bloquear el EDT
+        // Iniciar el servidor en un hilo separado para no bloquear el form
         new Thread(this::iniciarServidor).start();
     }
 
     private void iniciarServidor() {
-        int puerto = 12345;
 
-        try (ServerSocket serverSocket = new ServerSocket(puerto)) {
-            mostrarMensaje("Servidor esperando conexiones en el puerto " + puerto);
+
+        try (ServerSocket serverSocket = new ServerSocket(this.Port)) {
+            mostrarMensaje("Servidor esperando conexiones en el puerto " + this.Port);
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 mostrarMensaje("Cliente conectado desde " + clientSocket.getInetAddress().getHostAddress());
 
                 // Crear hilo para manejar la conexión con el cliente
-                new Thread(new ManejadorCliente(clientSocket)).start();
+                new Thread(new ManejadorCliente(clientSocket, this)).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void mostrarMensaje(String mensaje) {
-        SwingUtilities.invokeLater(() -> textArea.append(mensaje + "\n"));
+    public void mostrarMensaje(String mensaje) {
+        SwingUtilities.invokeLater(() -> txtMensajes.append(mensaje + "\n"));
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(Server::new);
-    }
 
 }
 
 
 class ManejadorCliente implements Runnable {
     private Socket clientSocket;
+    private Server server;
 
-    public ManejadorCliente(Socket clientSocket) {
+    public ManejadorCliente(Socket clientSocket, Server server) {
         this.clientSocket = clientSocket;
+        this.server = server;
     }
 
     @Override
@@ -83,7 +89,7 @@ class ManejadorCliente implements Runnable {
     }
 
     private void mostrarMensaje(String mensaje) {
-        Server.textArea.append(mensaje + "\n");
+        server.mostrarMensaje(mensaje + "\n");
     }
 }
 
