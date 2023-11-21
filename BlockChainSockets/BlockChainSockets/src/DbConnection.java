@@ -25,7 +25,7 @@ public class DbConnection {
     }
 
     public boolean CrearWallet(String nombre, String clave, String server, double balance) {
-        String sql = "INSERT INTO clientes ( nombre, clave, server, balance) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes ( nombre, clave, server, balance) VALUES (?, ?, ?, ?)";
 
         try (
                 Connection connection = DriverManager.getConnection(url, UserName, password);
@@ -36,7 +36,6 @@ public class DbConnection {
             preparedStatement.setString(3, server);
             preparedStatement.setDouble(4, balance);
 
-            preparedStatement.executeUpdate();
             int filasAfectadas = preparedStatement.executeUpdate();
             return filasAfectadas > 0;
         } catch (SQLException e) {

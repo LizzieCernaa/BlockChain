@@ -40,7 +40,7 @@
                   <text value="IP/port"/>
                 </properties>
               </component>
-              <component id="8bddf" class="javax.swing.JLabel">
+              <component id="8bddf" class="javax.swing.JLabel" binding="txtUsuario">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -128,7 +128,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="b4e07" class="javax.swing.JComboBox" binding="nodeData">
+                  <component id="b4e07" class="javax.swing.JComboBox" binding="cmbServer">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -174,7 +174,7 @@
               <text value="Current Balance:"/>
             </properties>
           </component>
-          <component id="d4464" class="javax.swing.JLabel">
+          <component id="d4464" class="javax.swing.JLabel" binding="txtBalance">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
