@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -7,6 +6,15 @@ import java.net.Socket;
 public class Server extends JFrame {
 
    static JTextArea textArea;
+    private JPanel panel2;
+    private JButton BtnSummary;
+    private JButton BtnBalance;
+    private JLabel LbServerNode;
+    private JLabel LbIP;
+    private JLabel LbPort;
+    private JLabel LbAvailable;
+    private JLabel LbBlock;
+
     public Server() {
         setTitle("Servidor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,7 +24,8 @@ public class Server extends JFrame {
         textArea.setEditable(false);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
-        getContentPane().add(scrollPane, BorderLayout.CENTER);
+        //getContentPane().add(scrollPane, BorderLayout.CENTER);
+        getContentPane().add(panel2);
 
         setVisible(true);
 

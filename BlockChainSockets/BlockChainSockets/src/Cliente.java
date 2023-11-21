@@ -1,24 +1,39 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Cliente extends JFrame {
 
-   public Cliente(){
+    private JPanel panel1;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JComboBox comboBox1;
+    private JButton sendButton;
+
+    public Cliente(){
+
        setTitle("Cliente");
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       setSize(300, 200);
+        setSize(400, 300);
 
        JButton enviarButton = new JButton("Enviar Mensaje");
        enviarButton.addActionListener(e -> enviarMensaje());
 
-       getContentPane().add(enviarButton, BorderLayout.CENTER);
-
+       //getContentPane().add(enviarButton, BorderLayout.CENTER);
+       getContentPane().add(panel1);
        setVisible(true);
-   }
+        sendButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+    }
 
     private void enviarMensaje() {
         String servidor = "localhost";
@@ -48,5 +63,46 @@ public class Cliente extends JFrame {
         SwingUtilities.invokeLater(Cliente::new);
     }
 
+    /*public boolean sendTransaction()
+    {
+        String sNode= this.nodeData.getNodeName();
+        String sReceiver= this.txtSend.getText().trim().toUpperCase();
+        Double dAmount= Double.parseDouble(this.txtAmount.getText());
+
+        int iserver= this.jComboBox1.getSelectedIndex();
+
+        if (dAmount<=this.dCurrentBalance)
+        {
+            this.jLabel4.setText("Current Balance: ");
+            this.dCurrentBalane-=dAmount;
+
+            try
+            {
+                sNode= this.oCifrado.encriptar(sNode);
+                sReceiiver= this.oCifrado.encriptar(sReceiver);
+
+                Block blk= new Block();
+                blk.setTransaction(sNode,dAmount,sReceiver);
+
+                Socket socket = new Socket(
+                        this.aServers.get(iserver).getIPAddress(),
+                        this.aServers.get(iserver).getSocketNum());
+                ObjectOutputStream oss =
+                        new ObjectOutputStream(socket.getOutputStream());
+                oos.writeObject(blk);
+                socket.close();
+                this.jLabel4.setText("Current Bolance:");
+                this.lBalance.setText("$ "+Double.toString(this.dCurrentBalance));
+                return true;
+            }
+            catch (Exception e)
+            {
+                this.dCurrentBalance+=dAmount;
+                this.jLabel5.setText(e.toString());
+            }
+        }
+        else this.jLabel4.setText("-Insufficient Balance: ");
+        return false;
+    }*/
 
 }
