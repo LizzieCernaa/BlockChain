@@ -64,7 +64,7 @@ public class BlockChainManage extends JFrame {
                 else
                     JOptionPane.showMessageDialog(null, "Error creando wallet");
 
-                var cliente = new Cliente(name, server, balance);
+                var cliente = new Cliente(name, server, balance,7001);
             }
         });
     }
