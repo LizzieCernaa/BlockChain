@@ -14,15 +14,17 @@ public class Cliente extends JFrame {
     private JButton txtSend;
     private JLabel txtUsuario;
     private JLabel txtBalance;
+    private String ip;
+    private int puerto;
 
-    public Cliente(String user, String server, double balance){
+    public Cliente(String user, String server, double balance, int port){
        setTitle("Cliente");
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
 
        getContentPane().add(panel1);
        setVisible(true);
-
+        this.puerto = port;
         txtUsuario.setText(user);
         txtBalance.setText(String.valueOf(balance));
         cmbServer.addItem(server);
@@ -40,8 +42,8 @@ public class Cliente extends JFrame {
     }
 
     private void enviarMensaje() {
-        String servidor = "localhost";
-        int puerto = 12345;
+        String servidor = "127.0.0.1";
+
 
         try (Socket socket = new Socket(servidor, puerto)) {
             // Crear los parámetros que deseas enviar al servidor
