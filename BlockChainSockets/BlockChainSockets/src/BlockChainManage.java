@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockChainManage extends JFrame {
     private JPanel panel1;
@@ -15,6 +17,9 @@ public class BlockChainManage extends JFrame {
     private JList list2;
     private JTextField txtClienteServer;
     private JTextField txtPassword;
+    private JComboBox cmbServidores;
+
+    private List<ServidorModel> servidores;
 
 
     public BlockChainManage(){
@@ -23,6 +28,7 @@ public class BlockChainManage extends JFrame {
         setSize(1500, 600);
         getContentPane().add(panel1);
         setVisible(true);
+        servidores = new ArrayList<ServidorModel>();
         newServerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -39,6 +45,12 @@ public class BlockChainManage extends JFrame {
                 txtServerName.setText("");
                 txtIP.setText("");
                 txtPort.setText("");
+                var servidor = new ServidorModel();
+                servidor.setName(name);
+                servidor.setIp(ip);
+                servidor.setPort(port);
+                servidores.add(servidor);
+                cmbServidores.addItem(name);
                 var server = new Server(name, ip, port);
             }
         });
@@ -48,7 +60,8 @@ public class BlockChainManage extends JFrame {
                 var name = txtClientName.getText();
                 var balance = Double.parseDouble(txtClientBalance.getText());
                 var clave = txtPassword.getText();
-                var server = txtClienteServer.getText();
+                var server = cmbServidores.getSelectedItem().toString();
+
                 var cifrador = new Cifrado("NADA12345");
                 String claveCifrada = null;
                 try {
@@ -64,7 +77,19 @@ public class BlockChainManage extends JFrame {
                 else
                     JOptionPane.showMessageDialog(null, "Error creando wallet");
 
-                var cliente = new Cliente(name, server, balance,7001);
+
+                ServidorModel serverInfo = null;
+                for (var s: servidores) {
+                    if (s.getName().equals(server))
+                        serverInfo =s;
+                }
+
+                if (serverInfo == null) {
+                    JOptionPane.showMessageDialog(null, "Servidor no encontrado");
+                    return;
+                }
+                var cliente = new Cliente(name, server, balance, serverInfo.getIp(), serverInfo.getPort());
+
             }
         });
     }

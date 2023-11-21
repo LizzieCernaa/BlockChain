@@ -17,10 +17,11 @@ public class Cliente extends JFrame {
     private JLabel txtBalance;
     private JPasswordField txtPassword;
     private JLabel LbPass;
+    private JLabel txtIpPuerto;
     private String ip;
     private int puerto;
 
-    public Cliente(String user, String server, double balance, int port){
+    public Cliente(String user, String server, double balance, String ip, int port){
        setTitle("Cliente");
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
@@ -28,8 +29,10 @@ public class Cliente extends JFrame {
        getContentPane().add(panel1);
        setVisible(true);
         this.puerto = port;
+        this.ip = ip;
         txtUsuario.setText(user);
         txtBalance.setText(String.valueOf(balance));
+        txtIpPuerto.setText(this.ip+"/"+this.puerto);
         cmbServer.addItem(server);
 
         txtSend.addActionListener(new ActionListener() {
@@ -67,7 +70,7 @@ public class Cliente extends JFrame {
     }
 
     private void enviarMensaje() {
-        String servidor = "127.0.0.1";
+        String servidor = this.ip;
 
 
         try (Socket socket = new Socket(servidor, puerto)) {
