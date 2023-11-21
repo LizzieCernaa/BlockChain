@@ -64,7 +64,6 @@ public class Cliente extends JFrame {
                 else
                     JOptionPane.showMessageDialog(null, "Error, usuario y/o clase no valido");
 
-                //
             }
         });
     }

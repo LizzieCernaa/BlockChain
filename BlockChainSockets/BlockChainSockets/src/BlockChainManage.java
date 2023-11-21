@@ -29,6 +29,12 @@ public class BlockChainManage extends JFrame {
         getContentPane().add(panel1);
         setVisible(true);
         servidores = new ArrayList<ServidorModel>();
+        var con = new DbConnection();
+        servidores= con.obtenerTodosServidores();
+        for (var s: servidores)
+        {
+            cmbServidores.addItem(s.getName());
+        }
         newServerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

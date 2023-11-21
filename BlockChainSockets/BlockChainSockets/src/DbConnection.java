@@ -112,5 +112,31 @@ public class DbConnection {
         }
     }
 
-    //
+    public List<ServidorModel> obtenerTodosServidores() {
+        List<ServidorModel> servidores = new ArrayList<>();
+        String sql = "SELECT * FROM servidores";
+
+        try (
+                Connection connection = DriverManager.getConnection(url, UserName, password);
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+        ) {
+            while (resultSet.next()) {
+                String nombre = resultSet.getString("nombre");
+                int puerto = resultSet.getInt("puerto");
+                String direccionIP = resultSet.getString("direccion_ip");
+
+                ServidorModel servidor = new ServidorModel();
+                servidor.setIp(direccionIP);
+                servidor.setName(nombre);
+                servidor.setPort(puerto);
+                servidores.add(servidor);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return servidores;
+    }
+
 }
