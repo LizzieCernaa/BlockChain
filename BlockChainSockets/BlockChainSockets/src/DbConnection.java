@@ -5,7 +5,7 @@ import java.util.List;
 public class DbConnection {
     private String url = "jdbc:oracle:thin:@127.0.0.1:1521:ORCLCDB";
     private String UserName = "SYSTEM";
-    private String password = "dQi8x8950CA=1";
+    private String password = "l+uTZ2g2Eo4=1";
     private String error;
     private Connection conn;
     public boolean Conectar()
