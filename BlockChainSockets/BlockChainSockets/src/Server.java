@@ -14,6 +14,7 @@ public class Server extends JFrame {
     private JLabel LbPort;
     private JLabel LbAvailable;
     private JLabel LbBlock;
+    private JPanel JOptionPane;
 
     public Server() {
         setTitle("Servidor");

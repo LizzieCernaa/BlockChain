@@ -1,7 +1,5 @@
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -11,9 +9,9 @@ public class Cliente extends JFrame {
 
     private JPanel panel1;
     private JTextField textField1;
-    private JTextField textField2;
-    private JComboBox comboBox1;
-    private JButton sendButton;
+    private JTextField txtAmount;
+    private JComboBox nodeData;
+    private JButton txtSend;
 
     public Cliente(){
 
@@ -21,15 +19,15 @@ public class Cliente extends JFrame {
        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
 
-       JButton enviarButton = new JButton("Enviar Mensaje");
-       enviarButton.addActionListener(e -> enviarMensaje());
-
-       //getContentPane().add(enviarButton, BorderLayout.CENTER);
        getContentPane().add(panel1);
        setVisible(true);
-        sendButton.addActionListener(new ActionListener() {
+        txtSend.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                //this.sendTransaction();
+                txtAmount.setText("");
+                txtSend.setText("");
 
             }
         });
