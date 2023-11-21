@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e48e6bc-4a98-4544-8d7f-6c21716274d4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Blockchain.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Blockchain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Cliente.form" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Cliente.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Server.form" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Server.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlockChainSockets/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChainSockets/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/BlockChainManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/BlockChainManage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/DbConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/BlockChainSockets/BlockChainSockets/src/DbConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,24 +32,19 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/cerna/OneDrive/Escritorio/Block/BlockChain/BlockChainSockets",
+    "last_opened_file_path": "C:/Users/FredyCerna/Desktop/dev/BlockChain/BlockChainSockets",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration name="Manager" type="Application" factoryName="Application">
       <module name="BlockChain" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="BlockChain" />
-      <option name="filePath" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BlockChainSockets" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -66,6 +60,7 @@
       <updated>1700530875899</updated>
       <workItem from="1700530876707" duration="57000" />
       <workItem from="1700530966315" duration="679000" />
+      <workItem from="1700540990326" duration="2961000" />
     </task>
     <servers />
   </component>
